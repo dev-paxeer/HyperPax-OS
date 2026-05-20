@@ -1,0 +1,21 @@
+// Copyright PaxLabs Ltd.(Paxeer Network)
+// Paxeer Network Non-Commercial License 1.0 (ENCL-1.0)(https://github.com/Paxeer-Network/hyperpaxeer-os/blob/main/LICENSE_FAQ.md)
+
+syntax = "proto3";
+package ethermint.feemarket.v1;
+
+option go_package = "github.com/evmos/evmos/v18/x/feemarket/types";
+
+// EventFeeMarket is the event type for the fee market module
+message EventFeeMarket {
+  // base_fee for EIP-1559 blocks
+  string base_fee = 1;
+}
+
+// EventBlockGas defines an Ethereum block gas event
+message EventBlockGas {
+  // height of the block
+  string height = 1;
+  // amount of gas wanted by the block
+  string amount = 2;
+}

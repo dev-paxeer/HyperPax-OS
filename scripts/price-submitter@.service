@@ -1,0 +1,22 @@
+[Unit]
+Description=HyperPax Price Submitter — %i
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/price-submitter/%i.env
+ExecStart=/root/hyperpax-price-submitter/price_submitter.sh
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=price-submitter-%i
+
+# Hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/var/log
+
+[Install]
+WantedBy=multi-user.target

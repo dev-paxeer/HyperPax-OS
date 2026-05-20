@@ -1,0 +1,15 @@
+[Unit]
+Description=PaxSpot Settlement Keeper (%i)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/price-submitter/%i.env
+ExecStart=/usr/local/bin/settlement_keeper.sh
+Restart=always
+RestartSec=10
+Environment=PATH=/root/.foundry/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+[Install]
+WantedBy=multi-user.target

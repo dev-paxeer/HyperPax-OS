@@ -1,0 +1,41 @@
+[
+  {
+    "type": "function",
+    "name": "hashTypedData",
+    "stateMutability": "pure",
+    "inputs": [
+      { "name": "domainSeparator", "type": "bytes32" },
+      { "name": "structHash", "type": "bytes32" }
+    ],
+    "outputs": [
+      { "name": "digest", "type": "bytes32" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "domainSeparator",
+    "stateMutability": "pure",
+    "inputs": [
+      { "name": "name", "type": "string" },
+      { "name": "version", "type": "string" },
+      { "name": "chainId", "type": "uint256" },
+      { "name": "verifyingContract", "type": "address" }
+    ],
+    "outputs": [
+      { "name": "separator", "type": "bytes32" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "recoverTypedSigner",
+    "stateMutability": "view",
+    "inputs": [
+      { "name": "domainSeparator", "type": "bytes32" },
+      { "name": "structHash", "type": "bytes32" },
+      { "name": "signature", "type": "bytes" }
+    ],
+    "outputs": [
+      { "name": "signer", "type": "address" }
+    ]
+  }
+]

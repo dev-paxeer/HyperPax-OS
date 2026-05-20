@@ -1,0 +1,51 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "int256",
+        "name": "oraclePrice",
+        "type": "int256"
+      },
+      {
+        "internalType": "int16[]",
+        "name": "buyOffsets",
+        "type": "int16[]"
+      },
+      {
+        "internalType": "uint128[]",
+        "name": "buySizes",
+        "type": "uint128[]"
+      },
+      {
+        "internalType": "int16[]",
+        "name": "sellOffsets",
+        "type": "int16[]"
+      },
+      {
+        "internalType": "uint128[]",
+        "name": "sellSizes",
+        "type": "uint128[]"
+      }
+    ],
+    "name": "computeClearing",
+    "outputs": [
+      {
+        "internalType": "int16",
+        "name": "clearingOffsetBps",
+        "type": "int16"
+      },
+      {
+        "internalType": "int256",
+        "name": "clearingPrice",
+        "type": "int256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "matchedVolume",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  }
+]

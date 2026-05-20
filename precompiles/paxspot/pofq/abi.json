@@ -1,0 +1,104 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "int256",
+        "name": "fillPrice",
+        "type": "int256"
+      },
+      {
+        "internalType": "int256",
+        "name": "oraclePrice",
+        "type": "int256"
+      }
+    ],
+    "name": "scoreFill",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "score",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "int256[]",
+        "name": "fillPrices",
+        "type": "int256[]"
+      },
+      {
+        "internalType": "int256[]",
+        "name": "oraclePrices",
+        "type": "int256[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "sizes",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "scoreBatch",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "avgScore",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "totalVolume",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "currentScore",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "currentWeight",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "newScore",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "newWeight",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint16",
+        "name": "decayBps",
+        "type": "uint16"
+      }
+    ],
+    "name": "updateRollingScore",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "updatedScore",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "updatedWeight",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  }
+]

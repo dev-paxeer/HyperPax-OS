@@ -1,0 +1,82 @@
+[
+  {
+    "type": "function",
+    "name": "verify",
+    "stateMutability": "view",
+    "inputs": [
+      { "name": "family", "type": "uint8" },
+      { "name": "quote", "type": "bytes" }
+    ],
+    "outputs": [
+      {
+        "name": "att",
+        "type": "tuple",
+        "components": [
+          { "name": "family", "type": "uint8" },
+          { "name": "mrtd", "type": "bytes32" },
+          { "name": "reportData", "type": "bytes32" },
+          { "name": "timestamp", "type": "uint64" },
+          { "name": "debug", "type": "bool" }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "verifyAndExpect",
+    "stateMutability": "view",
+    "inputs": [
+      { "name": "family", "type": "uint8" },
+      { "name": "quote", "type": "bytes" },
+      { "name": "expectedReportData", "type": "bytes32" }
+    ],
+    "outputs": [
+      {
+        "name": "att",
+        "type": "tuple",
+        "components": [
+          { "name": "family", "type": "uint8" },
+          { "name": "mrtd", "type": "bytes32" },
+          { "name": "reportData", "type": "bytes32" },
+          { "name": "timestamp", "type": "uint64" },
+          { "name": "debug", "type": "bool" }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "rootOf",
+    "stateMutability": "view",
+    "inputs": [
+      { "name": "family", "type": "uint8" },
+      { "name": "index", "type": "uint256" }
+    ],
+    "outputs": [
+      { "name": "root", "type": "bytes" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "rootCount",
+    "stateMutability": "view",
+    "inputs": [
+      { "name": "family", "type": "uint8" }
+    ],
+    "outputs": [
+      { "name": "count", "type": "uint256" }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "AttestationVerified",
+    "inputs": [
+      { "name": "family", "type": "uint8", "indexed": true },
+      { "name": "mrtd", "type": "bytes32", "indexed": true },
+      { "name": "reportData", "type": "bytes32", "indexed": false },
+      { "name": "timestamp", "type": "uint64", "indexed": false },
+      { "name": "debug", "type": "bool", "indexed": false }
+    ],
+    "anonymous": false
+  }
+]

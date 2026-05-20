@@ -1,0 +1,123 @@
+[
+  {
+    "type": "function",
+    "name": "schedule",
+    "stateMutability": "payable",
+    "inputs": [
+      { "name": "target", "type": "address" },
+      { "name": "callData", "type": "bytes" },
+      { "name": "executeAtBlock", "type": "uint64" },
+      { "name": "gasLimit", "type": "uint64" }
+    ],
+    "outputs": [
+      { "name": "jobId", "type": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "cancel",
+    "stateMutability": "nonpayable",
+    "inputs": [
+      { "name": "jobId", "type": "uint256" }
+    ],
+    "outputs": []
+  },
+  {
+    "type": "function",
+    "name": "reschedule",
+    "stateMutability": "nonpayable",
+    "inputs": [
+      { "name": "jobId", "type": "uint256" },
+      { "name": "newBlock", "type": "uint64" }
+    ],
+    "outputs": []
+  },
+  {
+    "type": "function",
+    "name": "getJob",
+    "stateMutability": "view",
+    "inputs": [
+      { "name": "jobId", "type": "uint256" }
+    ],
+    "outputs": [
+      {
+        "name": "job",
+        "type": "tuple",
+        "components": [
+          { "name": "id", "type": "uint256" },
+          { "name": "creator", "type": "address" },
+          { "name": "target", "type": "address" },
+          { "name": "callData", "type": "bytes" },
+          { "name": "executeAtBlock", "type": "uint64" },
+          { "name": "gasLimit", "type": "uint64" },
+          { "name": "deposit", "type": "uint256" },
+          { "name": "active", "type": "bool" }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "pending",
+    "stateMutability": "view",
+    "inputs": [
+      { "name": "creator", "type": "address" }
+    ],
+    "outputs": [
+      { "name": "jobIds", "type": "uint256[]" }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "JobScheduled",
+    "inputs": [
+      { "name": "jobId", "type": "uint256", "indexed": true },
+      { "name": "creator", "type": "address", "indexed": true },
+      { "name": "target", "type": "address", "indexed": false },
+      { "name": "executeAtBlock", "type": "uint64", "indexed": false },
+      { "name": "gasLimit", "type": "uint64", "indexed": false },
+      { "name": "deposit", "type": "uint256", "indexed": false }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "JobCancelled",
+    "inputs": [
+      { "name": "jobId", "type": "uint256", "indexed": true },
+      { "name": "creator", "type": "address", "indexed": true },
+      { "name": "refund", "type": "uint256", "indexed": false }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "JobRescheduled",
+    "inputs": [
+      { "name": "jobId", "type": "uint256", "indexed": true },
+      { "name": "newBlock", "type": "uint64", "indexed": false }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "JobExecuted",
+    "inputs": [
+      { "name": "jobId", "type": "uint256", "indexed": true },
+      { "name": "creator", "type": "address", "indexed": true },
+      { "name": "gasUsed", "type": "uint64", "indexed": false },
+      { "name": "refund", "type": "uint256", "indexed": false }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "JobFailed",
+    "inputs": [
+      { "name": "jobId", "type": "uint256", "indexed": true },
+      { "name": "creator", "type": "address", "indexed": true },
+      { "name": "reason", "type": "string", "indexed": false }
+    ],
+    "anonymous": false
+  }
+]

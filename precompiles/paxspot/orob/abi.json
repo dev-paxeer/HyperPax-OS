@@ -1,0 +1,74 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "int256",
+        "name": "oraclePrice",
+        "type": "int256"
+      },
+      {
+        "internalType": "int16",
+        "name": "offsetBps",
+        "type": "int16"
+      }
+    ],
+    "name": "resolveOffset",
+    "outputs": [
+      {
+        "internalType": "int256",
+        "name": "absolutePrice",
+        "type": "int256"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "int256",
+        "name": "oraclePrice",
+        "type": "int256"
+      },
+      {
+        "internalType": "int16[]",
+        "name": "offsetsBps",
+        "type": "int16[]"
+      }
+    ],
+    "name": "resolveOffsetBatch",
+    "outputs": [
+      {
+        "internalType": "int256[]",
+        "name": "absolutePrices",
+        "type": "int256[]"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "int256",
+        "name": "oraclePrice",
+        "type": "int256"
+      },
+      {
+        "internalType": "int256",
+        "name": "absolutePrice",
+        "type": "int256"
+      }
+    ],
+    "name": "toOffset",
+    "outputs": [
+      {
+        "internalType": "int16",
+        "name": "offsetBps",
+        "type": "int16"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  }
+]

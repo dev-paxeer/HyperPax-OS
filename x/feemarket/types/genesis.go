@@ -1,0 +1,26 @@
+// Copyright PaxLabs Ltd.(Paxeer Network)
+// Paxeer Network Non-Commercial License 1.0 (ENCL-1.0)(https://github.com/Paxeer-Network/hyperpaxeer-os/blob/main/LICENSE_FAQ.md)
+
+package types
+
+// DefaultGenesisState sets default fee market genesis state.
+func DefaultGenesisState() *GenesisState {
+	return &GenesisState{
+		Params:   DefaultParams(),
+		BlockGas: 0,
+	}
+}
+
+// NewGenesisState creates a new genesis state.
+func NewGenesisState(params Params, blockGas uint64) *GenesisState {
+	return &GenesisState{
+		Params:   params,
+		BlockGas: blockGas,
+	}
+}
+
+// Validate performs basic genesis state validation returning an error upon any
+// failure.
+func (gs GenesisState) Validate() error {
+	return gs.Params.Validate()
+}

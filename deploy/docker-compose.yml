@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  validator:
+    image: hyperpaxeer:v19-paxspot
+    container_name: hyperpax-validator
+    restart: always
+    ports:
+      - "26656:26656"   # P2P
+      - "26657:26657"   # Tendermint RPC
+      - "1317:1317"     # REST API
+      - "9090:9090"     # gRPC
+      - "8545:8545"     # EVM JSON-RPC
+      - "8546:8546"     # EVM WebSocket
+    volumes:
+      - ${DATA_DIR:-./data}:/root/.evmosd
+    command: >
+      start
+      --home /root/.evmosd
+      --chain-id=hyperpax_125-1
+      --json-rpc.enable
+      --json-rpc.api=eth,net,web3,debug,txpool,personal
+      --json-rpc.address=0.0.0.0:8545
+      --json-rpc.ws-address=0.0.0.0:8546
+      --json-rpc.max-open-connections=500
+      --json-rpc.enable-indexer=true
+      --json-rpc.block-range-cap=0
+      --json-rpc.logs-cap=0
+      --json-rpc.evm-timeout=30s
+      --grpc.enable
+      --grpc.address=0.0.0.0:9090
+      --api.enable
+      --pruning=nothing
+      --db_backend=goleveldb
+      --app-db-backend=goleveldb
+      --minimum-gas-prices=0.0001hpx
+      --log_level=info
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+      nproc:
+        soft: 65535
+        hard: 65535
+    deploy:
+      resources:
+        limits:
+          memory: 16G
+        reservations:
+          memory: 8G
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "5"
+    networks:
+      - hyperpax
+
+  price-submitter:
+    image: hyperpaxeer:v19-paxspot
+    container_name: hyperpax-price-submitter
+    restart: always
+    entrypoint: ["/usr/local/bin/price_submitter.sh"]
+    environment:
+      - VALIDATOR_KEY=${VALIDATOR_ETH_KEY:?Set VALIDATOR_ETH_KEY in .env}
+      - RPC_URL=http://validator:8545
+      - INTERVAL=${PRICE_INTERVAL:-20}
+      - LOG_FILE=/var/log/price_submitter.log
+      - DRY_RUN=${DRY_RUN:-false}
+    volumes:
+      - price-submitter-logs:/var/log
+    depends_on:
+      - validator
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - hyperpax
+
+volumes:
+  price-submitter-logs:
+
+networks:
+  hyperpax:
+    driver: bridge

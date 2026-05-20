@@ -1,0 +1,13 @@
+{
+  "retryOn429": true,
+  "retryCount": 3,
+  "fallbackRetryDelay": "20s",
+  "ignorePatterns": [
+    {
+      "pattern": "^https://twitter.com/.*"
+    },
+    {
+      "pattern": "https://commonwealth.im/evmos"
+    }
+  ]
+}
